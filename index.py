@@ -206,8 +206,3 @@ manager.calculer_salaire()
 
 # Exo 12 : Polymorphisme reel
 
-
-
-
-# ===== NIV EXPERT =====
-
