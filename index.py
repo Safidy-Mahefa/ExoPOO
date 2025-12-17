@@ -10,7 +10,7 @@ class personne:
 
 # Exo  2:
 p1 = personne("Safidy", 19)
-p2 = personne("Mahefa", 19)
+p2 = personne("Mahefa", 13)
 p3 = personne("Kezia", 18)
 p1.se_presenter()
 p2.se_presenter()
