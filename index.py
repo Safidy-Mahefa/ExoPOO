@@ -205,4 +205,3 @@ manager = Manager("Safidy",1000)
 manager.calculer_salaire()
 
 # Exo 12 : Polymorphisme reel
-
