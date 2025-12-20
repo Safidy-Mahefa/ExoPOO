@@ -1,5 +1,5 @@
 # Exo  1:
-class personne:
+class Personne:
     def __init__(self,nom,age):
         self.nom = nom
         self.age = age
@@ -9,15 +9,15 @@ class personne:
 
 
 # Exo  2:
-p1 = personne("Safidy", 19)
-p2 = personne("Mahefa", 13)
-p3 = personne("Kezia", 18)
+p1 = Personne("Safidy", 19)
+p2 = Personne("Mahefa", 13)
+p3 = Personne("Kezia", 18)
 p1.se_presenter()
 p2.se_presenter()
 p3.se_presenter()
 
 # Exo 3: Attribut privé
-class compteBancaire:
+class CompteBancaire:
     def __init__(self, titulaire):
         self.titulaire = titulaire
         self.__solde = 0              #__solde est un attr privé == _compteBancaire__solde  / attr privé = attr qui n'est pas accessible en dehors de la classe
@@ -36,13 +36,13 @@ class compteBancaire:
     def afficherSolde(self):
          print("Solde du compte {} : Ar {} .".format(self.titulaire,self.__solde))
 
-c1 = compteBancaire("BOA")
+c1 = CompteBancaire("BOA")
 c1.deposer(500)
 c1.retirer(100)
 c1.afficherSolde()
 
 # Exo 3: Méthodes simples
-class rectangle:
+class Rectangle:
     def __init__(self,largeur,hauteur):
         self.largeur = largeur
         self.hauteur = hauteur
@@ -56,13 +56,13 @@ class rectangle:
         print("perimetre : {}".format(per))
         return per
     
-r1 = rectangle(4,2)
+r1 = Rectangle(4,2)
 r1.surface()
 r1.perimetre()
 
 # =====NIV INTERMEDIAIRE ========
 # Exo 5: Validation de données
-class produit:
+class Produit:
     def __init__(self,nom):
         self.nom = nom
         self.__prix = 0
@@ -75,7 +75,7 @@ class produit:
     def afficher(self):
         print("Produit : {} | Prix : {} $".format(self.nom,self.__prix))
 
-prod = produit("Téléphone")
+prod = Produit("Téléphone")
 prod.set_prix = 550 #le setter set_prix est appelé ici
 prod.afficher()
 
