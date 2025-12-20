@@ -23,8 +23,9 @@ class CompteBancaire:
         self.__solde = 0              #__solde est un attr privé == _compteBancaire__solde  / attr privé = attr qui n'est pas accessible en dehors de la classe
     
     def deposer(self,montant):
-        if montant < 0:
+        if montant <= 0:
             print("Erreur : Montant négatif !")
+            return
         self.__solde += montant
         print("Dépot de {} Ar réussi.".format(montant))
     def retirer(self,montant):
@@ -224,8 +225,8 @@ manager.calculer_salaire()
 def afficherAire(forme):
     print(forme.aire())
 
-Forme.afficherAire(carr)
-Forme.afficherAire(rect)
+afficherAire(carr)
+afficherAire(rect)
 
 
 # =====NIV EXPERT ========
