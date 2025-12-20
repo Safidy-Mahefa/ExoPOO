@@ -23,7 +23,9 @@ class compteBancaire:
         self.__solde = 0              #__solde est un attr privé == _compteBancaire__solde  / attr privé = attr qui n'est pas accessible en dehors de la classe
     
     def deposer(self,montant):
-        self.__solde = montant
+        if montant < 0:
+            print("Erreur : Montant négatif !")
+        self.__solde += montant
         print("Dépot de {} Ar réussi.".format(montant))
     def retirer(self,montant):
         if montant > self.__solde:
@@ -47,10 +49,12 @@ class rectangle:
     def surface(self):
         surf = self.largeur * self.hauteur
         print("surface : {}".format(surf))
+        return surf
 
     def perimetre(self):
         per =  (self.largeur + self.hauteur) * 2
         print("perimetre : {}".format(per))
+        return per
     
 r1 = rectangle(4,2)
 r1.surface()
@@ -67,11 +71,12 @@ class produit:
             print("Erreur  :  Montant négatif !")
         else:
             self.__prix = montant
+    set_prix = property(set_prix)
     def afficher(self):
         print("Produit : {} | Prix : {} $".format(self.nom,self.__prix))
 
 prod = produit("Téléphone")
-prod.set_prix(550)
+prod.set_prix = 550 #le setter set_prix est appelé ici
 prod.afficher()
 
 # Exo 6: Classe avec compteur(attr statique)
@@ -80,8 +85,11 @@ class Utilisateur:
     def __init__(self,nom):
         self.nom = nom
         Utilisateur.nbUtilisateurs += 1
+
+    @staticmethod #methode statique car elle n'utilise pas de self.
     def afficher():
         print("Le nombre d'utilisateurs est : {}".format(Utilisateur.nbUtilisateurs))
+
 u1 = Utilisateur("Kezia")
 u2 = Utilisateur("Safidy")
 Utilisateur.afficher()
@@ -111,9 +119,14 @@ class Classe:
     def __init__(self,nom):
         self.nom = nom
         self.etudiants = []
+
     def ajoutEtudiant(self,etudiant):
         self.etudiants.append(etudiant)
+
     def moyenne(self):
+        if len(self.etudiants) == 0:
+            print("Aucun étudiant dans la classe.")
+            return
         moy = 0
         som = 0
         for etudiant in self.etudiants:
@@ -166,17 +179,15 @@ from abc import ABC, abstractmethod #obligatoire
 
 class Forme(ABC):
     @abstractmethod
-    def aire(): #La methode abstraite que tt les filles doivent contenir sinon erreur et imposible d'instancier
+    def aire(self): #La methode abstraite que tt les filles doivent contenir sinon erreur et imposible d'instancier. doit contenir self
         pass
-    def afficherAire(forme):
-        print(forme.aire())
 
 class Carre(Forme):
     def __init__(self,c):
         super().__init__()
         self.c = c
     def aire(self):
-        return self.c*2
+        return self.c**2
     
 class Rectangle(Forme):
     def __init__(self,l,L):
@@ -202,12 +213,17 @@ class Manager(Employe):
     def __init__(self, nom, salaire):
         super().__init__(nom, salaire)
     def calculer_salaire(self):
-        print("{} + Bonus: 500 = {} ".format(super().calculer_salaire(),super().calculer_salaire() + 500))
+        base = super().calculer_salaire() #appel de la methode de la classe mère
+        total = base + 500  #bonus de 500
+        print("Salaire total avec bonus : {}".format(total))
 
 manager = Manager("Safidy",1000)
 manager.calculer_salaire()
 
-# Exo 12 : Polymorphisme reel : voir exo 10 (afficherAre)
+# Exo 12 : Polymorphisme reel : la capacité d'une methode à s'adapter en fonction de l'objet qui l'appelle
+def afficherAire(forme):
+    print(forme.aire())
+
 Forme.afficherAire(carr)
 Forme.afficherAire(rect)
 
