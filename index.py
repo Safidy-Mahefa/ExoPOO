@@ -210,3 +210,42 @@ manager.calculer_salaire()
 # Exo 12 : Polymorphisme reel : voir exo 10 (afficherAre)
 Forme.afficherAire(carr)
 Forme.afficherAire(rect)
+
+
+# =====NIV EXPERT ========
+# Exo 13: Surcharge d'opérateurs
+#-> C'est une manière de définir le comportement des opérateurs par rapport au type de donnéés qui l'utilise:
+# 1 + 1 = 2 : int /  "a" + "b" = "ab": str. on veut aussi definir le comportement des op pour les objets donc on utilise la surcharge d'opérateurs
+# on a :
+class Vecteur2D:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+
+    def __add__(self,other): #self est le premier obj et other le deuxieme. on surcharge l'operateur +
+        return Vecteur2D(self.x + other.x, self.y + other.y) #on retourne un nouveau vecteur issu de l'operation (x1 + x2, y1 + y2)
+    def __sub__(self,other): #surcharger la soustraction
+        return Vecteur2D(self.x - other.x, self.y - other.y)
+    def __mul__(self,other): #surcharger la multiplication
+        return Vecteur2D(self.x * other.x, self.y * other.y)
+    def __eq__(self,other):#surcharger l'égalite
+        return self.x == other.x and self.y == other.y
+    
+vec1 = Vecteur2D(2,6)
+vec2 = Vecteur2D(3,9)
+vec3 = vec1 + vec2 
+print("Addition = ({},{})".format(vec3.x,vec3.y))
+vec3 = vec1 - vec2 
+print("Soustraction = ({},{})".format(vec3.x,vec3.y))
+vec3 = vec1 * vec2 
+print("Multiplication = ({},{})".format(vec3.x,vec3.y))
+
+print("Comparaison = {}".format(vec1 == vec2))
+
+#exo 14: Dataclass
+#exo 15: Singleton
+#exo 16: Pattern Factory
+#exo 17: Pattern strategy
+#exo 18: Gestion des exceptions métiers
+#exo 19: Test orientés POO
+#exo 20: Mini projet final 
