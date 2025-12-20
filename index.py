@@ -168,6 +168,8 @@ class Forme(ABC):
     @abstractmethod
     def aire(): #La methode abstraite que tt les filles doivent contenir sinon erreur et imposible d'instancier
         pass
+    def afficherAire(forme):
+        print(forme.aire())
 
 class Carre(Forme):
     def __init__(self,c):
@@ -175,6 +177,7 @@ class Carre(Forme):
         self.c = c
     def aire(self):
         return self.c*2
+    
 class Rectangle(Forme):
     def __init__(self,l,L):
         super().__init__()
@@ -183,7 +186,7 @@ class Rectangle(Forme):
     def aire(self):
         return self.l * self.L
 carr = Carre(4)
-rect = Rectangle(4,2)
+rect = Rectangle(8,2)
 
 
 # Exo 11 : Super & Override
@@ -204,4 +207,6 @@ class Manager(Employe):
 manager = Manager("Safidy",1000)
 manager.calculer_salaire()
 
-# Exo 12 : Polymorphisme reel
+# Exo 12 : Polymorphisme reel : voir exo 10 (afficherAre)
+Forme.afficherAire(carr)
+Forme.afficherAire(rect)
