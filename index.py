@@ -67,17 +67,22 @@ class Produit:
     def __init__(self,nom):
         self.nom = nom
         self.__prix = 0
-    def set_prix(self,montant):
+
+    @property #le getter
+    def prix(self):
+        return self.__prix
+    
+    @prix.setter #le setter
+    def prix(self,montant):
         if montant < 0:
             print("Erreur  :  Montant négatif !")
         else:
             self.__prix = montant
-    set_prix = property(set_prix)
     def afficher(self):
         print("Produit : {} | Prix : {} $".format(self.nom,self.__prix))
 
 prod = Produit("Téléphone")
-prod.set_prix = 550 #le setter set_prix est appelé ici
+prod.prix = 500
 prod.afficher()
 
 # Exo 6: Classe avec compteur(attr statique)
@@ -259,7 +264,33 @@ print("Multiplication = ({},{})".format(vec3.x,vec3.y))
 
 print("Comparaison = {}".format(vec1 == vec2))
 
-#exo 14: Dataclass
+#exo 14: Dataclass : un dataclass c'est une classe conçu spécialement pour stocker des données.
+#ex : un user a un nom,age,email... on peut transformer la classe user en dataclass.
+class User: #Methode classique pour creer une classe
+    def __init__(self,id,nom,age):
+        self.id = id
+        self.nom = nom
+        self.age = age
+
+from dataclasses import dataclass, field
+@dataclass
+class User2:
+    id : int
+    nom : str
+    age : int = 10
+    tags: list = field(default_factory=list) #La syntaxe pour les listes
+
+    def __post_init__(self): #L'istruction q'on fait juste apres l'initialisation : verifications, affichage etc...
+        if self.age >18:
+            print("Un utilisateur majeur a été ajouté !")
+# Avec dataclass, plus besoin d'ecrire le constructeur, etc... python le gener automatiquement.
+#utilisation:
+u1 = User2(1,"Safidy",20)
+u2 = User2(2,"Mahefa",19)
+print(u1)
+
+#  Dataclass = c'est un objet de donnees, un model , un truc q'on peut comparer, afficher stocker
+
 #exo 15: Singleton
 #exo 16: Pattern Factory
 #exo 17: Pattern strategy
